@@ -13,9 +13,5 @@ Perfect for learning HTML, CSS, and JS while building something fun!
 Check out the live website here:  
 [https://yourusername.github.io/a-z-love/](https://yourusername.github.io/a-z-love/)
 
----
 
-## 🎬 Preview
 
- 
-*![Preiew](image.png)*
