@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A–Z Love ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Segoe UI', sans-serif;
+            color: black;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 20px auto;
+            position: relative;
+            border: 2px solid black;
+        }
+        
+        input {
+            width: 90%;
+            padding: 12px;
+            border-radius: 25px;
+            border: 2px solid black;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
+        }
+        
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: 2px solid black;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: white;
+            color: #ff4d6d;
+        }
+        
+        .az-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .az-container button {
+            border-radius: 50%;
+            font-size: 18px;
+            padding: 12px;
+            border: 2px solid black;
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
+            transition: 0.3s;
+        }
+        
+        .az-container button:hover {
+            background: white;
+            color: #ff4d6d;
+        }
+        
+        .message-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            font-size: 18px;
+            min-height: 80px;
+            border: 2px solid black;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+        
+        .video-container {
+            margin-top: 20px;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: black;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>💖 Enter Your Name 💖</h2>
+        <input type="text" id="nameInput" placeholder="Type name here..." />
+        <br>
+        <button onclick="startLove()">Continue 💌</button>
+
+        <h2 id="title" style="margin-top:30px;"></h2>
+        <p id="subtitle">Every Letter Tells My Love 💕</p>
+
+        <div class="az-container" id="azButtons"></div>
+
+        <div class="message-box" id="loveMessage">
+            💗 Choose a letter to see the love 💗
+        </div>
+
+        <div id="loveVideo" class="video-container"></div>
+
+        <div class="footer">
+            Created By Wesly Jeyananthan Abisha
+        </div>
+    </div>
+
+    <script>
+        let loverName = "";
+
+        function startLove() {
+            const input = document.getElementById("nameInput").value.trim();
+            if (input === "") {
+                alert("Please enter a name 💕");
+                return;
+            }
+
+            loverName = input;
+            document.getElementById("title").innerText = `A–Z Love for ${loverName} ❤️`;
+
+            generateAZ();
+
+            // Create YouTube button instead of embedding
+            document.getElementById("loveVideo").innerHTML = `
+                <button onclick="openVideo()" id="videoButton">❤️💌    Click Here My Dear  ${loverName}  This for you❤️💌</button>
+            `;
+        }
+
+        function generateAZ() {
+            const container = document.getElementById("azButtons");
+            container.innerHTML = "";
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const btn = document.createElement("button");
+                btn.innerText = letter;
+                btn.onclick = () => showLove(letter);
+                container.appendChild(btn);
+            }
+        }
+
+        function showLove(letter) {
+            const messages = {
+                A: `A is for Always — I will always love you, ${loverName} ❤️`,
+                B: `B is for Beautiful — you are beautiful, ${loverName} 💕`,
+                C: `C is for Care — I care deeply for you, ${loverName} 💗`,
+                D: `D is for Destiny — you are my destiny, ${loverName} 💞`,
+                E: `E is for Everything — you mean everything, ${loverName} 🥰`,
+                F: `F is for Forever — forever with you, ${loverName} 💖`,
+                G: `G is for Grace — you bring grace to my life, ${loverName} 🌸`,
+                H: `H is for Heart — my heart belongs to you, ${loverName} 💓`,
+                I: `I is for Infinity — endless love for you, ${loverName} ♾️`,
+                J: `J is for Joy — you are my joy, ${loverName} 😊`,
+                K: `K is for Kiss — kisses only for you, ${loverName} 😘`,
+                L: `L is for Love — pure love for you, ${loverName} ❤️`,
+                M: `M is for Magic — you are magic, ${loverName} ✨`,
+                N: `N is for Need — I need you always, ${loverName} 💕`,
+                O: `O is for Only You — always you, ${loverName} 💖`,
+                P: `P is for Promise — I promise my heart, ${loverName} 💍`,
+                Q: `Q is for Queen — my heart’s queen, ${loverName} 👑`,
+                R: `R is for Romance — every moment with you, ${loverName} 💘`,
+                S: `S is for Smile — your smile heals me, ${loverName} 😊`,
+                T: `T is for Together — always together, ${loverName} 🤝`,
+                U: `U is for You — my favorite person, ${loverName} 💗`,
+                V: `V is for Valentine — every day is ours, ${loverName} ❤️`,
+                W: `W is for Warmth — your love warms me, ${loverName} 🔥`,
+                X: `X is for XO — hugs & kisses, ${loverName} 😘`,
+                Y: `Y is for You & Me — forever us, ${loverName} 💞`,
+                Z: `Z is for Zillion — love times a zillion, ${loverName} 💖`
+            };
+            document.getElementById("loveMessage").innerText = messages[letter];
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💕";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (14 + Math.random() * 22) + "px";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        function openVideo() {
+            const videoUrl = "https://www.youtube.com/watch?v=0TgNQXj6rr0";
+            window.open(videoUrl, "_blank");
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+
+</html>
